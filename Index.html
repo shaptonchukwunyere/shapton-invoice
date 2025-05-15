@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Invoices</title>
+    <link rel="stylesheet" href="./invoice.css" />
+  </head>
+  <body>
+    <section class="sidebar">
+      <div class="logo">
+        <div class="logo-back"><img src="./Logo.webp" alt="" /></div>
+      </div>
+      <div class="user">
+        <i class="ri-moon-fill"></i>
+        <hr />
+        <img src="./Pfp.webp" alt="" />
+      </div>
+    </section>
+    <main>
+      <section class="modal">
+        <div class="modal-content">
+          <div class="invoice-content">
+            <h2>New Invoice</h2>
+            <button class="exit">Exit</button>
+            <form id="invoiceForm">
+              <p>Bill From</p>
+              <div class="input">
+                <label for="strAddress">Street Address</label>
+                <input id="strAddress" class="inputlrg" type="text" />
+              </div>
+
+              <div class="details">
+                <div class="input">
+                  <label for="city">City</label>
+                  <input
+                    id="bill-from-city-input"
+                    class="inputsml"
+                    type="text"
+                  />
+                </div>
+                <div class="input">
+                  <label for="postCode">Post Code</label>
+                  <input
+                    id="bill-from-postCodeInput"
+                    class="inputsml"
+                    type="text"
+                  />
+                </div>
+                <div class="input">
+                  <label for="country">Country</label>
+                  <input
+                    id="bill-from-country-input"
+                    class="inputsml"
+                    type="text"
+                  />
+                </div>
+              </div>
+
+              <p>Bill to</p>
+              <div class="input">
+                <label for="clientName">Client's Name</label>
+                <input id="clientName" class="inputlrg" type="text" />
+              </div>
+              <div class="input">
+                <label for="clientEmail">Client's Email</label>
+                <input id="clientEmail" class="inputlrg" type="text" />
+              </div>
+              <div class="input">
+                <label for="strAddress">Street Address</label>
+                <input id="bill-to-strAddress" class="inputlrg" type="text" />
+              </div>
+
+              <div class="details">
+                <div class="input">
+                  <label for="city">City</label>
+                  <input id="bill-to-city-input" class="inputsml" type="text" />
+                </div>
+                <div class="input">
+                  <label for="postCode">Post Code</label>
+                  <input
+                    id="bill-to-postCode-input"
+                    class="inputsml"
+                    type="text"
+                  />
+                </div>
+                <div class="input">
+                  <label for="country">Country</label>
+                  <input
+                    id="bill-to-country-input"
+                    class="inputsml"
+                    type="text"
+                  />
+                </div>
+              </div>
+              <div class="details">
+                <div class="input">
+                  <label for="invoiceDate">Invoice Date</label>
+                  <input id="invoiceDate" type="date" />
+                </div>
+                <div class="input">
+                  <label for="paymentTerms">Payment Terms</label>
+                  <div class="paymentTerms">
+                    <select name="netDays" id="netDays">
+                      <option value="net1">Net 1 Days</option>
+                      <option value="net7">Net 7 Days</option>
+                      <option value="net14">Net 14 Days</option>
+                      <option value="net30">Net 30 Days</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="input">
+                <label for="projectDescription">Project Description</label>
+                <input id="projectDescription" class="inputlrg" type="text" />
+              </div>
+
+              <h3>Item List</h3>
+              <div class="newItem">+ Add New Item</div>
+
+              <div class="itemList">
+                <div class="input">
+                  <label for="itemName">Item Name</label>
+                  <input id="itemName" class="inputlrg" type="text" />
+                </div>
+                <div class="input">
+                  <label for="item-">Qty</label>
+                  <input id="itemQty" class="inputsml" type="number" min="0" />
+                </div>
+                <div class="input">
+                  <label for="price">Price</label>
+                  <input
+                    id="itemPrice"
+                    class="inputsml"
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <div class="input">
+                  <label for="total">Total</label>
+                  <input
+                    id="itemTotal"
+                    class="inputsml"
+                    type="number"
+                    readonly
+                  />
+                  <i class="ri-delete-bin-6-line" id="removeItem"></i>
+                </div>
+              </div>
+              <button class="submit">Save & Send</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section class="e-modal">
+        <div class="modal-content">
+          <div class="new-invoice-content">
+            <h2>New Invoice</h2>
+            <button class="e-exit">Exit</button>
+            <form id="edit-invoiceForm">
+              <p>Bill From</p>
+              <div class="input">
+                <label for="e-strAddress">Street Address</label>
+                <input id="e-strAddress" class="inputlrg" type="text" />
+              </div>
+
+              <div class="details">
+                <div class="input">
+                  <label for="e-city">City</label>
+                  <input
+                    id="e-bill-from-city-input"
+                    class="inputsml"
+                    type="text"
+                  />
+                </div>
+                <div class="input">
+                  <label for="e-postCode">Post Code</label>
+                  <input
+                    id="e-bill-from-postCodeInput"
+                    class="inputsml"
+                    type="text"
+                  />
+                </div>
+                <div class="input">
+                  <label for="e-country">Country</label>
+                  <input
+                    id="e-bill-from-country-input"
+                    class="inputsml"
+                    type="text"
+                  />
+                </div>
+              </div>
+
+              <p>Bill to</p>
+              <div class="input">
+                <label for="e-clientName">Client's Name</label>
+                <input id="e-clientName" class="inputlrg" type="text" />
+              </div>
+              <div class="input">
+                <label for="e-clientEmail">Client's Email</label>
+                <input id="e-clientEmail" class="inputlrg" type="text" />
+              </div>
+              <div class="input">
+                <label for="e-strAddress">Street Address</label>
+                <input id="e-bill-to-strAddress" class="inputlrg" type="text" />
+              </div>
+
+              <div class="details">
+                <div class="input">
+                  <label for="e-city">City</label>
+                  <input
+                    id="e-bill-to-city-input"
+                    class="inputsml"
+                    type="text"
+                  />
+                </div>
+                <div class="input">
+                  <label for="e-postCode">Post Code</label>
+                  <input
+                    id="e-bill-to-postCode-input"
+                    class="inputsml"
+                    type="text"
+                  />
+                </div>
+                <div class="input">
+                  <label for="e-country">Country</label>
+                  <input
+                    id="e-bill-to-country-input"
+                    class="inputsml"
+                    type="text"
+                  />
+                </div>
+              </div>
+              <div class="details">
+                <div class="input">
+                  <label for="e-invoiceDate">Invoice Date</label>
+                  <input id="e-invoiceDate" type="date" />
+                </div>
+                <div class="input">
+                  <label for="e-paymentTerms">Payment Terms</label>
+                  <div class="e-paymentTerms">
+                    <select name="e-netDays" id="e-netDays">
+                      <option value="net1">Net 1 Days</option>
+                      <option value="net7">Net 7 Days</option>
+                      <option value="net14">Net 14 Days</option>
+                      <option value="net30">Net 30 Days</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="input">
+                <label for="e-projectDescription">Project Description</label>
+                <input id="e-projectDescription" class="inputlrg" type="text" />
+              </div>
+
+              <h3>Item List</h3>
+              <div class="newItem">+ Add New Item</div>
+              <div class="itemList">
+                <div class="input">
+                  <label for="e-itemName">Item Name</label>
+                  <input id="e-itemName" class="inputlrg" type="text" />
+                </div>
+                <div class="input">
+                  <label for="e-item-">Qty</label>
+                  <input
+                    id="e-itemQty"
+                    class="inputsml"
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <div class="input">
+                  <label for="e-price">Price</label>
+                  <input
+                    id="e-itemPrice"
+                    class="inputsml"
+                    type="number"
+                    min="0"
+                  />
+                </div>
+                <div class="input">
+                  <label for="e-total">Total</label>
+                  <input
+                    id="e-itemTotal"
+                    class="inputsml"
+                    type="number"
+                    readonly
+                  />
+                  <i class="ri-delete-bin-6-line" id="removeItem"></i>
+                </div>
+              </div>
+              <button class="submit">Save & Send</button>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section class="invoice-sec">
+        <header class="invoiceHeader">
+          <div class="info">
+            <h1>Invoices</h1>
+            <p>
+              There are a total of 0 <br />
+              invoices
+            </p>
+          </div>
+          <div class="controls">
+            <div class="filter">
+              <span>Filter by Status</span>
+              <i class="ri-arrow-drop-down-fill"></i>
+              <ul class="dropdown-menu" id="filter">
+                <li>
+                  <input type="checkbox" name="pending" id="pending" />
+                  <label for="pending">Pending</label>
+                </li>
+                <li>
+                  <input type="checkbox" name="paid" id="paid" />
+                  <label for="paid">Paid</label>
+                </li>
+              </ul>
+            </div>
+            <button class="new-invoice">+ New Invoice</button>
+          </div>
+        </header>
+        <div class="error-msg">
+          <img src="./errmsg.webp" alt="" />
+        </div>
+        <div class="invoice-list">
+          <!-- <div class="invoices">
+            <div class="invoice-info">
+              <div class="hash">#</div>
+              <span class="code">E13198</span>
+              <span class="due-date">Due 2/24/2025</span>
+              <p class="name">Jane Moise</p>
+            </div>
+            <div class="payment">
+              <p class="amount">£ 1,800,000.00</p>
+              <span class="status">
+                <i class="ri-circle-fill"></i>
+                <p>Paid</p>
+              </span>
+            </div>
+          </div>
+          <div class="invoices">
+            <div class="invoice-info">
+              <div class="hash">#</div>
+              <span class="code">RU6582</span>
+              <span class="due-date"> Due 2/25/2025</span>
+              <p class="name">Timilehin</p>
+            </div>
+            <div class="payment">
+              <p class="amount">£ 100,000.00</p>
+              <span class="status">
+                <i class="ri-circle-fill"></i>
+                <p>Paid</p>
+              </span>
+            </div>
+          </div> -->
+        </div>
+      </section>
+      <div class="invoice-sec-extra">
+        <div class="blank"></div>
+        <div class="go-back">
+          <i class="ri-arrow-left-s-fill"></i>
+          <p>Go back</p>
+        </div>
+        <div class="controls2">
+          <div class="status-container">
+            <span>Status</span>
+            <div class="status">
+              <i class="ri-circle-fill"></i>
+              <p>Paid</p>
+            </div>
+          </div>
+          <div class="edit-buttons">
+            <div class="editBtn">Edit</div>
+            <div class="deleteBtn">Delete</div>
+            <div class="markAsPaid">Mark as Paid</div>
+          </div>
+        </div>
+        <div class="invoice-details">
+          <div class="codeandloc">
+            <div class="codesec">
+              <div class="code"><span>#</span> EI3198</div>
+              <div class="projectDesc">House Building</div>
+            </div>
+            <div class="locationDet">
+              <div class="bill-from-streetAdress">Kevin Cloe</div>
+              <div class="bill-from-city">Texas</div>
+              <div class="bill-from-postCode">1111111</div>
+              <div class="bill-from-country">Nigeria</div>
+            </div>
+          </div>
+          <div class="main-invoice-info">
+            <div class="dates">
+              <div class="invoice-date-sec">
+                <p>Invoice Date</p>
+
+                <h2 class="invoice-date">2/24/2025</h2>
+              </div>
+              <div class="payment-due-sec">
+                <p>Payment Due</p>
+
+                <h2 class="payment-due">2/25/2025</h2>
+              </div>
+            </div>
+
+            <div class="bill-to-sec">
+              <p>Bill To</p>
+              <h2>Alex Gray</h2>
+              <p class="client-name">Jane Moise</p>
+              <p class="bill-to-city">Honkong</p>
+              <p class="bill-to-post-code">22222222222</p>
+              <p class="bill-to-country">China</p>
+            </div>
+            <div class="sent-to-sec">
+              <p>Sent To</p>
+              <h2>Sinthia10@gmail.com</h2>
+            </div>
+          </div>
+          <div class="item-list-sec">
+            <div class="item-list-header">
+              <div>Item Name</div>
+              <div class="qty">QTY.</div>
+              <div class="price">Price</div>
+              <div class="total">Total</div>
+            </div>
+            <div class="item-list">
+              <div class="item-name">Room</div>
+              <div class="item-qty">15</div>
+              <div class="item-price">£ 120,000</div>
+              <div class="item-total">£ 1,800,000.00</div>
+            </div>
+          </div>
+          <div class="amount-due">
+            <span>Amount Due</span>
+            <h2>£ 1,800,000.00</h2>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="./invoice.js"></script>
+  </body>
+</html>

@@ -1,0 +1,603 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "League Spartan", sans-serif;
+}
+body {
+  display: flex;
+  background-color: rgb(246, 245, 245);
+  display: flex;
+  justify-content: space-between;
+}
+main {
+  display: flex;
+  height: 100%;
+  gap: 5.5rem;
+  width: 100%;
+  justify-content: center;
+}
+.sidebar {
+  background-color: rgb(55 59 83);
+  color: black;
+  width: 150px;
+  height: 100vh;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 4.3rem;
+  z-index: 2;
+}
+hr {
+  width: 100%;
+  border: none;
+  height: 1px;
+  background-color: rgb(124, 93, 250);
+}
+
+.logo-back {
+  background-color: rgb(124, 93, 250);
+  width: 150px;
+  height: 150px;
+  border-top-right-radius: 30px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  width: 100%;
+}
+.user i {
+  font-size: 2rem;
+  color: rgb(126, 136, 195);
+  cursor: pointer;
+}
+.invoice-sec {
+  margin-top: 11rem;
+  width: 900px;
+  display: flex;
+  flex-direction: column;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+}
+.info h1 {
+  font-size: 42px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: black;
+}
+.info p {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(63, 63, 63);
+  line-height: 20px;
+}
+.controls {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  justify-content: center;
+}
+.dropdown-menu {
+  display: none; /* Hidden by default */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--secondary-colour);
+  list-style: none;
+  padding: 10px 0;
+  border-radius: 10px;
+  width: 150px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  margin-top: 10px;
+}
+
+.filter {
+  position: relative;
+  cursor: pointer;
+  font-weight: 700;
+}
+.filter span {
+  padding-bottom: 25px;
+  color: black;
+}
+.filter i {
+  font-size: 2rem;
+  color: rgb(124, 93, 250);
+  display: inline-block;
+  transition: transform 0.3s ease, color 0.3s ease;
+  position: absolute;
+  top: -10px;
+}
+.filter:hover i {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.filter:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+}
+
+.dropdown-menu li {
+  padding: 5px 20px;
+}
+
+input[type="checkbox"]:hover {
+  border: 3px solid rgb(124, 93, 250);
+  outline: 2px solid rgb(124, 93, 250);
+}
+.new-invoice {
+  background-color: rgb(124, 93, 250);
+  color: white;
+  padding: 20px 30px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+}
+.invoices {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  /* margin-top: 3rem; */
+  margin-bottom: 1rem;
+  padding: 1.75rem;
+  background-color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.invoice-info {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.hash {
+  color: rgb(136, 142, 176);
+  font-weight: 700;
+  font-size: 24px;
+  margin-right: -2rem;
+}
+.code {
+  font-weight: 700;
+  font-size: 20px;
+  color: black;
+}
+.due-date {
+  font-weight: 500;
+  font-size: 16px;
+  color: rgb(116, 115, 116);
+}
+.name {
+  font-weight: 500;
+  font-size: 16px;
+  color: rgb(116, 115, 116);
+}
+.payment {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+.amount {
+  font-weight: 700;
+  font-size: 20px;
+  color: black;
+}
+.status {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  background-color: rgb(31, 42, 62);
+  color: rgb(51, 214, 159);
+  font-weight: 700;
+  padding: 17px 20px;
+  border-radius: 5px;
+}
+.status i {
+  font-size: 0.7rem;
+  color: rgb(51, 214, 159);
+}
+
+.modal,
+.e-modal {
+  z-index: 1;
+  width: 100%;
+  background-color: #0000009b;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 300ms ease-in-out;
+  overflow: hidden;
+  display: none;
+}
+.e-modal {
+  z-index: 4;
+}
+
+.modal-content {
+  width: 70%;
+  max-width: 90%;
+  border-radius: 8px;
+  height: 100vh;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  position: relative;
+  bottom: 1.5rem;
+  left: 4rem;
+  overflow-y: auto;
+  font-weight: 700;
+}
+.invoice-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  /* position: absolute;
+  right: 4rem; */
+  padding-left: 2rem;
+  padding-bottom: 2rem;
+}
+.new-invoice-content h2 {
+  align-self: flex-start;
+}
+.exit,
+.e-exit {
+  cursor: pointer;
+  border: 0;
+  border-radius: 0.25em;
+  background: initial;
+  background-color: rgb(112, 102, 224);
+  color: white;
+  font-size: 16px;
+  padding: 5px 8px;
+  position: absolute;
+  right: 1rem;
+  top: 3rem;
+}
+
+.new-invoice-content p {
+  font-size: 16px;
+  font-weight: 700;
+  color: rgb(111, 93, 250);
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+.new-invoice-content input {
+  padding: 12px 16px;
+  border-radius: 4px;
+}
+input {
+  color: black;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  border: 1px solid rgb(223 227 250);
+  padding: 12px 20px;
+}
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.details {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-bottom: 2rem;
+}
+select {
+  padding: 12px 16px;
+  border-radius: 4px;
+  border: 1px solid rgb(223 227 250);
+  background-color: var(--secondary-colour);
+  color: black;
+  font-size: 18px;
+  font-weight: 700;
+  width: 100%;
+}
+label {
+  font-size: 16px;
+  color: rgb(136, 142, 176);
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+h3 {
+  font-size: 20px;
+  color: rgb(136, 142, 176);
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 4rem;
+}
+.newItem {
+  font-weight: 700;
+  font-size: 16px;
+  background-color: rgb(188, 186, 190);
+  padding: 20px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  border: none;
+  margin-bottom: 20px;
+  width: 100%;
+  text-align: center;
+  color: rgb(18, 18, 19);
+}
+.itemList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.itemList .input i {
+  font-size: 1.5rem;
+  color: black;
+  cursor: pointer;
+}
+.submit {
+  background-color: rgb(18, 18, 19);
+  color: white;
+  padding: 20px 30px;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  margin-top: 2rem;
+  width: 100%;
+}
+.invoice-sec-extra {
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+  width: 65%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 14.4rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-bottom: 2rem;
+  margin-bottom: 3rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.blank {
+  margin-bottom: 10rem;
+}
+.go-back {
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+.go-back i {
+  font-size: 1.3rem;
+  color: rgb(124, 93, 250);
+}
+.controls2 {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(232, 232, 232, 0.839);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+.status-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.status-container span {
+  font-size: 18px;
+  color: rgb(223, 227, 250);
+}
+.edit-buttons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+.editBtn {
+  background-color: rgb(39, 43, 67);
+  color: white;
+  padding: 15px 35px;
+  border-radius: 28px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+}
+.editBtn:hover {
+  background-color: white;
+  color: rgb(39, 43, 67);
+  transition: all 0.1s ease-in-out;
+}
+.deleteBtn {
+  background-color: rgb(236, 87, 87);
+  color: white;
+  padding: 18px 35px;
+  border-radius: 28px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+}
+.deleteBtn:hover {
+  background-color: white;
+  color: rgb(236, 87, 87);
+  transition: all 0.1s ease-in-out;
+}
+.markAsPaid {
+  background-color: rgb(124, 93, 250);
+  color: white;
+  padding: 18px 35px;
+  border-radius: 28px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+}
+.markAsPaid:hover {
+  background-color: white;
+  color: rgb(124, 93, 250);
+  transition: all 0.1s ease-in-out;
+}
+.invoice-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding: 1.75rem;
+  background-color: rgba(232, 232, 232, 0.839);
+}
+
+.code span {
+  font-weight: 700;
+  font-size: 22px;
+  color: rgb(124, 93, 250);
+  margin-right: -3px;
+}
+.codeandloc {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2.5rem;
+  margin-bottom: 3rem;
+}
+.codesec {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  color: rgb(223, 227, 250);
+  width: 100%;
+}
+.locationDet {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  width: 100%;
+  gap: 0.5rem;
+}
+.streetAddress {
+  display: flex;
+}
+.main-invoice-info {
+  display: flex;
+  gap: 3rem;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+.main-invoice-info p {
+  color: rgb(111, 111, 112);
+}
+.dates {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.dates p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.dates h2 {
+  font-size: 18px;
+}
+.bill-to-sec {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.bill-to-sec h2 {
+  font-size: 18px;
+}
+.bill-to-sec p {
+  font-size: 16px;
+}
+.sent-to-sec {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sent-to-sec h2 {
+  font-size: 18px;
+}
+.item-list-sec {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: rgb(232, 235, 250);
+  padding: 1.75rem;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+.item-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgb(168, 169, 172);
+}
+.item-list {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 18px;
+}
+.item-name {
+  font-size: 24px;
+}
+.amount-due {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  color: white;
+  padding: 1.75rem;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+.error-msg {
+  display: flex;
+  margin-left: 17rem;
+}
+@media (max-width: 768px) {
+  .invoice-sec {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  main {
+    height: 100vh;
+  }
+}
